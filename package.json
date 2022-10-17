@@ -1,0 +1,12 @@
+{
+  "name": "afkarena-notion-lambda",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@notionhq/client": "^2.2.1"
+  }
+}
