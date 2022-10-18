@@ -20,7 +20,13 @@ exports.handler = async (event) => {
   while (cursor !== null) {
     const response = await notion.databases.query({
       database_id: notionDatabaseId,
-      start_cursor : cursor
+      start_cursor : cursor,
+      sorts: [
+        {
+            "property": "Name",
+            "direction": "ascending"
+        }
+      ]
     });
     results = results.concat(...response.results);
     cursor = response.has_more ? response.next_cursor : null;
