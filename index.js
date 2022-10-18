@@ -14,12 +14,19 @@ const notion = new Client({
 });
 
 exports.handler = async (event) => {
-  const response = await notion.databases.query({
-    database_id: notionDatabaseId
-  });
 
+  var results = [];
+  var cursor = undefined;
+  while (cursor !== null) {
+    const response = await notion.databases.query({
+      database_id: notionDatabaseId,
+      start_cursor : cursor
+    });
+    results = results.concat(...response.results);
+    cursor = response.has_more ? response.next_cursor : null;
+  }
   return {
     statusCode: 200,
-    body: JSON.stringify(response),
+    body: JSON.stringify(results),
   };
 };
