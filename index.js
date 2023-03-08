@@ -45,15 +45,16 @@ exports.handler = async (event) => {
     });
 
     var uploadParams = {
-           Bucket: awsS3Bucket,
-           Key: awsS3Filename,
-           Body: JSON.stringify(results),
-           CacheControl: 'no-cache',
-           ContentType: 'application/json',
+      Bucket: awsS3Bucket,
+      Key: awsS3Filename,
+      Body: JSON.stringify(results),
+      CacheControl: 'no-cache',
+      ContentType: 'application/json',
     };
     await s3.putObject(uploadParams).promise();
     return {
-      statusCode: 200
+      statusCode: 200,
+      body: JSON.stringify(`Success! Output = s3://${awsS3Bucket}/${awsS3Filename}`),
     };
   }
   catch(error) {

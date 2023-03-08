@@ -1,3 +1,6 @@
 # package directories
 node_modules
-afkarena-notion-lambda.zip
+jspm_packages
+
+# Serverless directories
+.serverless

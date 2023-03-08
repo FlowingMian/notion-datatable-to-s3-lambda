@@ -1,0 +1,32 @@
+service: notion-db-to-s3
+frameworkVersion: '3'
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: eu-central-1
+  iam:
+    role:
+      statements:
+          - Effect: Allow
+            Action:
+              - 's3:GetObject'
+              - 's3:PutObject'
+            Resource:
+              - 'arn:aws:s3:::*'
+
+functions:
+  api:
+    handler: index.handler
+    events:
+      - httpApi:
+          path: /
+          method: get
+    environment:
+      AWS_S3_BUCKET : # just the bucket name, not the ARN
+      AWS_S3_FILENAME : # *some-filename*.json
+      NOTION_SECRET : # obtained on Notion integration 
+      NOTION_DATABASE_ID : # found in Notion database URL
