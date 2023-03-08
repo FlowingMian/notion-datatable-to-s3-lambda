@@ -1,5 +1,5 @@
-# AFK Arena Notion Lambda
-AFK Arena Notion Lambda is an AWS Lambda function written in NodeJS to transform a Notion database into a static JSON file
+# Notion to S3 Lambda
+Notion to S3 Lambda is an AWS Lambda function written in NodeJS to transform a Notion database into a static JSON file
 - Uses Notion API to query database
 - Returns every Pages using pagination sorted by **Name**
 - Upload resulting JSON on a S3 bucket
@@ -11,7 +11,7 @@ AFK Arena Notion Lambda is an AWS Lambda function written in NodeJS to transform
   - Add a connection on desired database for this integration
 - Lambda
   - Tested on Node.js 16.x runtime on arm64 architecture
-  - Enable function URL to be able to trigger it through an HTTP request
+  - (Optional) Enable function URL to be able to trigger it through an HTTP request
   - Add **AmazonS3FullAccess** permission to Lambda execution role name
   - Required environment variables 
     - AWS_S3_BUCKET : just the bucket name, not the ARN
